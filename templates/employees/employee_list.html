@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Employee List{% endblock %}
+
+{% block content %}
+<h1>Employee List</h1>
+
+<form method="get">
+    <input type="text" name="name" placeholder="Search by name">
+    <button type="submit">Apply Filter</button>
+</form>
+<hr>
+<ul>
+   {% for employee in employees %}
+       <li>
+           <strong>Name:</strong> {{ employee.name }}<br>
+           <strong>Department:</strong> {{ employee.department }}<br>
+           <a href="{% url 'employee:employee-detail' employee.pk %}">Details</a> |
+           <a href="{% url 'employee:employee-update' employee.pk %}">Edit</a> |
+           <a href="{% url 'employee:employee-delete' employee.pk %}">Delete</a>
+       </li>
+       <hr>
+   {% endfor %}
+</ul>
+<a href="{% url 'employee:employee-create' %}">Add Employee</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Employee Detail{% endblock %}
+
+{% block content %}
+<h1>Employee Detail</h1>
+<p>Name: {{ employee.name }}</p>
+<p>Department: {{ employee.department }}</p>
+<p>Identification Document: <a href="{{ employee.identification_document.url }}">View Identification Document</a></p>
+{% if employee.manager %}
+   <p><strong>Manager:</strong> <a href="{% url 'employee:employee-detail' employee.manager.pk %}">
+    {{ employee.manager.name }}
+</a></p>
+{% endif %}
+<strong>Salary:</strong> {{ employee.salary }}<br>
+<a href="{% url 'employee:employee-update' employee.pk %}">Edit</a> |
+<a href="{% url 'employee:employee-delete' employee.pk %}">Delete</a> |
+<a href="{% url 'employee:employee-list' %}">Back to Employee List</a>
+{% endblock %}

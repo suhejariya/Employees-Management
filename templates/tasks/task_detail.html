@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Task Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+   <h1 class="mt-4">Task Detail</h1>
+   <p><strong>Title:</strong> {{ task.title }}</p>
+   <p><strong>Description:</strong> {{ task.description }}</p>
+   <p><strong>Assigned to:</strong> {{ task.assigned_to.name }}</p>
+   <p><strong>Department:</strong> {{ task.assigned_to.department }}</p>
+   <p><strong>Work in Progress:</strong> {{ task.get_status_display }}</p>
+   <p><strong>Completion Date:</strong> {{ task.completion_date }}</p>
+   <a href="{% url 'tasks:task-update' task.pk %}">Edit</a> |
+   <a href="{% url 'tasks:task-delete' task.pk %}">Delete</a> |
+   <a href="{% url 'tasks:task-list' %}">Back to Task List</a>
+</div>
+{% endblock %}

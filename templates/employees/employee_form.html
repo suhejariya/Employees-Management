@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if request.resolver_match.url_name == 'employee-create' %}Add{% else %}Edit{% endif %} Employee{% endblock %}
+
+{% block content %}
+<div class="container">
+   <h1 class="mt-4">{% if request.resolver_match.url_name == 'employee-create' %}Add{% else %}Edit{% endif %} Employee</h1>
+   <form method="post" enctype="multipart/form-data" class="mt-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Save</button>
+   </form>
+   <a href="{% url 'employee:employee-list' %}" class="btn btn-secondary mt-2">Back to Employee List</a>
+</div>
+{% endblock %}
